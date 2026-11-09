@@ -358,6 +358,9 @@ const UI={
     saveFailed:"Profil non enregistré. Réessayez.",
     delFailed:"Suppression impossible.",
     nameReq:"Entrez un nom.",
+    errRules:"Accès refusé par la base. Publiez les règles Firestore du guide (étape 4).",
+    errDb:"Base de données injoignable. Vérifiez qu'elle est créée dans Firestore Database, puis réessayez.",
+    errAuth:"Connexion anonyme refusée. Activez-la dans Authentication.",
     someone:"Quelqu'un", you:"vous", example:"Exemple", youCap:"Vous",
     live:"En direct", preview:"Aperçu", offline:"Hors ligne", syncing:"Synchro…",
     writeIn:n=>"Vous écrivez en "+n,
@@ -392,6 +395,9 @@ const UI={
     saveFailed:"Profile not saved. Try again.",
     delFailed:"Could not delete.",
     nameReq:"Enter a name.",
+    errRules:"Access denied by the database. Publish the Firestore rules from the guide (step 4).",
+    errDb:"Database unreachable. Check that it is created in Firestore Database, then try again.",
+    errAuth:"Anonymous sign-in refused. Enable it in Authentication.",
     someone:"Someone", you:"you", example:"Example", youCap:"You",
     live:"Live", preview:"Preview", offline:"Offline", syncing:"Syncing…",
     writeIn:n=>"You write in "+n,
@@ -886,14 +892,15 @@ el.joinForm.addEventListener('submit',async e=>{
   if(!name){el.joinErr.textContent=ui.nameReq;el.joinErr.hidden=false;el.nameInput.focus();return;}
   el.joinBtn.disabled=true;
   try{
-    await S.store.setMember(S.uid,{name,lang,at:Date.now()});
+    await withTimeout(S.store.setMember(S.uid,{name,lang,at:Date.now()}),10000);
     S.name=name;S.lang=lang;S.hasProfile=true;S.editing=false;
     ls.set('palabre:name',name);ls.set('palabre:lang',lang);
     setUiFor(lang);
     show('chat');
   }catch(err){
     if(err&&err.code==='invalid_argument') S.canWrite=false;
-    el.joinErr.textContent=ui.saveFailed;el.joinErr.hidden=false;
+    console.error(err);
+    el.joinErr.textContent=(explain(err)||ui.saveFailed)+' ['+String((err&&(err.code||err.message))||'?')+']';el.joinErr.hidden=false;
   }finally{el.joinBtn.disabled=false;}
 });
 el.joinCancel.addEventListener('click',()=>{S.editing=false;show('chat');});
@@ -922,7 +929,8 @@ async function send(){
     S.sending=false;
     el.msg.value=text;autosize();
     if(err&&err.code==='invalid_argument'){S.canWrite=false;scheduleRender();}
-    toast(ui.sendFailed);
+    console.error(err);
+    toast(explain(err)||ui.sendFailed);
   }
   el.msg.focus();
 }
@@ -948,7 +956,7 @@ el.list.addEventListener('scroll',()=>{
 function validMember(m){return m&&typeof m.id==='string'&&typeof m.name==='string'&&m.name.trim();}
 function wire(store){
   S.store=store;
-  const onErr=()=>{S.connLost=true;scheduleRender();};
+  const onErr=e=>{S.connLost=true;console.error(e);const m=explain(e);if(m) toast(m);scheduleRender();};
   store.onMembers(ms=>{
     S.members=ms.filter(validMember).map(m=>({id:m.id,name:m.name.slice(0,24),lang:LMAP[m.lang]?m.lang:''}));
     scheduleRender();
@@ -993,6 +1001,13 @@ const CFG=window.ENTRE_NOUS_CONFIG||{};
 function configured(){
   const f=CFG.firebase||{};
   return !!(window.firebase&&f.apiKey&&f.projectId&&!/COLLER|YOUR_|XXXX/i.test(String(f.apiKey)+String(f.projectId)));
+}
+function explain(e){
+  const c=String((e&&e.code)||(e&&e.message)||'').toLowerCase();
+  if(c.includes('permission')) return ui.errRules;
+  if(c.includes('unavailable')||c.includes('timeout')||c.includes('not-found')||c.includes('deadline')) return ui.errDb;
+  if(c.includes('auth')) return ui.errAuth;
+  return '';
 }
 function withTimeout(p,ms){
   return Promise.race([p,new Promise((_,rej)=>setTimeout(()=>rej(new Error('timeout')),ms))]);
