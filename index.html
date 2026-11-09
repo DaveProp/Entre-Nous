@@ -4,8 +4,8 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Entre Nous</title>
 <meta name="description" content="Chacun écrit dans sa langue et lit dans la sienne.">
-<meta name="theme-color" content="#EDF1EC" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0D1815" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#EEF3FF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0B1230" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -19,47 +19,61 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=DM+Mono:wght@400;500&family=Instrument+Sans:wght@400..700&display=swap">
 <style>
-/* Layout: one single-column room. A drifting wax-print dotted rule on top, a header whose title letters spring in, participant chips, a thread where every card stacks the original over a hatched translation layer that is revealed word by word, and the composer pinned below. */
+/* Layout: one single-column room. A drifting woven stripe in four colours on top, a header whose title letters spring in, participant chips, a thread where every card stacks the original over a hatched translation layer that is revealed word by word, and the composer pinned below. */
 :root{
-  --bg:#EDF1EC;
-  --surface:#FAFBF9;
-  --ink:#14241F;
-  --ink-2:#4A5D56;
-  --line:#D2DBD4;
-  --strip:#14241F;
-  --accent:#C4440A;
-  --accent-text:#A63608;
+  --bg:#EEF3FF;
+  --surface:#FFFFFF;
+  --ink:#0F1B3D;
+  --ink-2:#4B5A85;
+  --line:#D3DCF5;
+  --accent:#2457F5;
+  --accent-text:#1A45D6;
   --on-accent:#FFFFFF;
-  --mine:#F9E2D2;
-  --layer:#E2EAE3;
-  --warn-bg:#FFF0CF;
-  --warn-ink:#684700;
-  --danger:#B42318;
-  --av-s:50%;
-  --av-l:38%;
+  --mine:#2457F5;
+  --mine-ink:#FFFFFF;
+  --mine-soft:#E3EAFF;
+  --mine-ok:#B9F6D2;
+  --mine-warn:#FFD6D6;
+  --layer:#FFF1C4;
+  --warn-bg:#FFE6E0;
+  --warn-ink:#7A2A12;
+  --danger:#C42B2B;
+  --av-s:70%;
+  --av-l:42%;
   --av-ink:#FFFFFF;
-  --ok:#1E8E4E;
-  --ok-text:#11693A;
-  --shadow:rgba(20,36,31,.22);
-  --dot:rgba(20,36,31,.06);
+  --ok:#22B573;
+  --ok-text:#0E7A47;
+  --k1:#2457F5;
+  --k2:#FFC933;
+  --k3:#FF5C5C;
+  --k4:#22B573;
+  --k3-text:#D13B3B;
+  --shadow:rgba(15,27,61,.22);
+  --dot:rgba(15,27,61,.07);
   --f-display:'Bricolage Grotesque','Trebuchet MS',system-ui,sans-serif;
   --f-body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
   --f-mono:'DM Mono',ui-monospace,'SF Mono',Menlo,monospace;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#0D1815;--surface:#152520;--ink:#E5EEE8;--ink-2:#9BB0A7;--line:#243730;--strip:#243730;
-    --accent:#FF8F52;--accent-text:#FF9E69;--on-accent:#1C0D04;--mine:#3B2315;--layer:#1E3129;
-    --warn-bg:#3A2D0E;--warn-ink:#F3D58A;--danger:#FF8A80;--av-l:60%;--av-ink:#0D1815;
-    --ok:#5FD38D;--ok-text:#7FE0A5;--shadow:rgba(0,0,0,.55);--dot:rgba(229,238,232,.06);
+    --bg:#0B1230;--surface:#151E47;--ink:#E8EDFF;--ink-2:#A3B0DB;--line:#28336A;
+    --accent:#7C98FF;--accent-text:#9CB1FF;--on-accent:#0B1230;
+    --mine:#3A5BEB;--mine-ink:#FFFFFF;--mine-soft:#DCE4FF;--mine-ok:#A8F0C6;--mine-warn:#FFC9C9;
+    --layer:#3A3114;--warn-bg:#4A2318;--warn-ink:#FFD2C4;--danger:#FF8F8F;
+    --av-l:58%;--av-ink:#0B1230;--ok:#4BD596;--ok-text:#7BE3B2;
+    --k1:#3A5BEB;--k2:#FFD04D;--k3:#FF7A7A;--k4:#3DC98A;--k3-text:#FF9D9D;
+    --shadow:rgba(0,0,0,.55);--dot:rgba(232,237,255,.07);
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --bg:#0D1815;--surface:#152520;--ink:#E5EEE8;--ink-2:#9BB0A7;--line:#243730;--strip:#243730;
-  --accent:#FF8F52;--accent-text:#FF9E69;--on-accent:#1C0D04;--mine:#3B2315;--layer:#1E3129;
-  --warn-bg:#3A2D0E;--warn-ink:#F3D58A;--danger:#FF8A80;--av-l:60%;--av-ink:#0D1815;
-  --ok:#5FD38D;--ok-text:#7FE0A5;--shadow:rgba(0,0,0,.55);--dot:rgba(229,238,232,.06);
+  --bg:#0B1230;--surface:#151E47;--ink:#E8EDFF;--ink-2:#A3B0DB;--line:#28336A;
+  --accent:#7C98FF;--accent-text:#9CB1FF;--on-accent:#0B1230;
+  --mine:#3A5BEB;--mine-ink:#FFFFFF;--mine-soft:#DCE4FF;--mine-ok:#A8F0C6;--mine-warn:#FFC9C9;
+  --layer:#3A3114;--warn-bg:#4A2318;--warn-ink:#FFD2C4;--danger:#FF8F8F;
+  --av-l:58%;--av-ink:#0B1230;--ok:#4BD596;--ok-text:#7BE3B2;
+  --k1:#3A5BEB;--k2:#FFD04D;--k3:#FF7A7A;--k4:#3DC98A;--k3-text:#FF9D9D;
+  --shadow:rgba(0,0,0,.55);--dot:rgba(232,237,255,.07);
   color-scheme:dark;
 }
 
@@ -77,14 +91,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 @keyframes pulse{50%{opacity:.4}}
 
 .shell{height:100%;display:flex;flex-direction:column}
-.strip{flex:0 0 12px;background-color:var(--strip);
-  background-image:
-    radial-gradient(circle at 5px 6px,var(--accent) 3px,transparent 3.5px),
-    radial-gradient(circle at 15px 6px,var(--surface) 1.8px,transparent 2.3px),
-    radial-gradient(circle at 25px 6px,var(--ok) 3px,transparent 3.5px);
-  background-size:30px 12px;background-repeat:repeat-x;
-  animation:drift 4s linear infinite}
-@keyframes drift{to{background-position:-30px 0,-30px 0,-30px 0}}
+.strip{flex:0 0 12px;
+  background:repeating-linear-gradient(90deg,var(--k1) 0 30px,var(--k2) 30px 42px,var(--k3) 42px 72px,var(--k4) 72px 84px);
+  background-size:84px 12px;
+  animation:drift 6s linear infinite}
+@keyframes drift{to{background-position:-84px 0}}
 .app{flex:1;min-height:0;width:100%;max-width:860px;margin:0 auto;display:flex;flex-direction:column;
   padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:8px}
 
@@ -93,7 +104,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 h1{margin:0;font:800 34px/1 var(--f-display);letter-spacing:-.03em}
 h1 .ch{display:inline-block;animation:letterIn .7s cubic-bezier(.2,.9,.3,1.35) both;animation-delay:calc(var(--i)*45ms + 120ms)}
 h1 .sp{display:inline-block;width:.28em}
-h1 .dot{color:var(--accent)}
+h1 .ch:nth-child(n+7){color:var(--accent)}
+h1 .ch.dot{color:var(--k3)}
 @keyframes letterIn{from{opacity:0;transform:translateY(55%) rotate(5deg)}to{opacity:1;transform:none}}
 .tagline{margin:6px 0 0;font-size:13px;color:var(--ink-2);text-wrap:balance;animation:fade .8s ease .9s both}
 
@@ -169,13 +181,15 @@ h1 .dot{color:var(--accent)}
 .msg.enter.mine{animation-name:msgInMine}
 @keyframes msgIn{from{opacity:0;transform:translate(-14px,14px) scale(.96)}to{opacity:1;transform:none}}
 @keyframes msgInMine{from{opacity:0;transform:translate(14px,18px) scale(.96)}to{opacity:1;transform:none}}
-.card{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+.card{min-width:0;background:var(--surface);border:1px solid var(--line);border-radius:18px;overflow:hidden;
   box-shadow:0 1px 0 var(--line),0 10px 18px -14px var(--shadow);transition:transform .2s ease,box-shadow .2s ease}
 .card:hover{transform:translateY(-1px);box-shadow:0 1px 0 var(--line),0 14px 22px -14px var(--shadow)}
 .msg:not(.mine) .card{border-bottom-left-radius:4px}
-.msg.mine .card{background:var(--mine);
-  background:linear-gradient(160deg,var(--mine),color-mix(in srgb,var(--mine) 78%,var(--accent)));
-  border-color:transparent;border-bottom-right-radius:4px}
+.msg.mine .card{background:var(--mine);color:var(--mine-ink);border-color:transparent;border-bottom-right-radius:4px}
+.msg.mine .tag{color:var(--mine-soft)}
+.msg.mine .tag.ok{color:var(--mine-ok)}
+.msg.mine .link.del{color:var(--mine-soft)}
+.msg.mine .link.del.armed{color:var(--mine-warn)}
 .pad{padding:8px 12px 9px}
 .meta{display:flex;gap:8px;align-items:baseline;margin-bottom:2px;flex-wrap:wrap}
 .who{font:700 13px var(--f-display)}
@@ -202,6 +216,9 @@ h1 .dot{color:var(--accent)}
 .greet span{position:absolute;inset:0;display:grid;place-items:center;font:800 44px/1 var(--f-display);letter-spacing:-.02em;color:var(--accent);
   opacity:0;animation:greet 16s infinite both;animation-delay:calc(var(--i)*2s)}
 @keyframes greet{0%{opacity:0;transform:translateY(16px) scale(.96)}2.5%,9%{opacity:1;transform:none}12.5%,100%{opacity:0;transform:translateY(-16px) scale(.96)}}
+
+.greet span:nth-child(3n+2){color:var(--k3-text)}
+.greet span:nth-child(3n+3){color:var(--ok-text)}
 
 .jump{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);border:0;background:var(--accent);color:var(--on-accent);padding:7px 14px;border-radius:999px;font-size:13px;font-weight:600;cursor:pointer;
   box-shadow:0 10px 18px -10px var(--shadow);animation:jumpIn .4s cubic-bezier(.2,.9,.3,1.4) both}
@@ -312,21 +329,22 @@ h1 .dot{color:var(--accent)}
 
 /* ---------- Languages and interface strings ---------- */
 const LANGS=[
-  {c:'fr',n:'Français',e:'French'},
-  {c:'en',n:'English',e:'English'},
-  {c:'es',n:'Español',e:'Spanish'},
-  {c:'pt',n:'Português',e:'Portuguese'},
-  {c:'ar',n:'العربية',e:'Arabic'},
-  {c:'de',n:'Deutsch',e:'German'},
-  {c:'it',n:'Italiano',e:'Italian'},
-  {c:'zh',n:'中文',e:'Simplified Chinese'},
-  {c:'ja',n:'日本語',e:'Japanese'},
-  {c:'ru',n:'Русский',e:'Russian'},
-  {c:'sw',n:'Kiswahili',e:'Swahili'},
-  {c:'tr',n:'Türkçe',e:'Turkish'}
+  {c:'fr',f:'🇫🇷',n:'Français',e:'French'},
+  {c:'en',f:'🇬🇧',n:'English',e:'English'},
+  {c:'es',f:'🇪🇸',n:'Español',e:'Spanish'},
+  {c:'pt',f:'🇵🇹',n:'Português',e:'Portuguese'},
+  {c:'ar',f:'🇸🇦',n:'العربية',e:'Arabic'},
+  {c:'de',f:'🇩🇪',n:'Deutsch',e:'German'},
+  {c:'it',f:'🇮🇹',n:'Italiano',e:'Italian'},
+  {c:'zh',f:'🇨🇳',n:'中文',e:'Simplified Chinese'},
+  {c:'ja',f:'🇯🇵',n:'日本語',e:'Japanese'},
+  {c:'ru',f:'🇷🇺',n:'Русский',e:'Russian'},
+  {c:'sw',f:'🇰🇪',n:'Kiswahili',e:'Swahili'},
+  {c:'tr',f:'🇹🇷',n:'Türkçe',e:'Turkish'}
 ];
 const LMAP={};
 LANGS.forEach(l=>{LMAP[l.c]=l;});
+function fl(c){return (LMAP[c]&&LMAP[c].f?LMAP[c].f+' ':'')+c;}
 const REDUCE=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
 
 const UI={
@@ -455,7 +473,7 @@ const el={
   joinForm:$('joinForm'),nameInput:$('nameInput'),langSelect:$('langSelect'),joinErr:$('joinErr'),
   joinBtn:$('joinBtn'),joinCancel:$('joinCancel')
 };
-LANGS.forEach(l=>el.langSelect.append(h('option',{value:l.c,text:l.n})));
+LANGS.forEach(l=>el.langSelect.append(h('option',{value:l.c,text:l.f+' '+l.n})));
 
 function buildTitle(){
   const title=document.querySelector('h1');
@@ -722,7 +740,7 @@ function chipNode(m,i){
   const node=h('span',{class:'chip'+(c?' still':''),style:c?null:'--d:'+(Math.min(i,8)*70)+'ms'},
     h('span',{class:'av sm',style:'--h:'+hue(m.id),'aria-hidden':'true',text:initial(m.name)}),
     h('span',{class:'nm',text:m.name+(m.id===S.uid?' ('+ui.you+')':'')}),
-    m.lang?h('span',{class:'tag',text:m.lang}):null);
+    m.lang?h('span',{class:'tag',text:fl(m.lang)}):null);
   chipCache.set(m.id,{sig,node});
   return node;
 }
@@ -752,30 +770,30 @@ function msgNode(m,delay){
 
   const meta=h('div',{class:'meta'},
     mine?null:h('span',{class:'who',text:name}),
-    LMAP[m.lang]?h('span',{class:'tag',text:m.lang}):null,
+    LMAP[m.lang]?h('span',{class:'tag',text:fl(m.lang)}):null,
     h('span',{class:'tag',text:timeLabel(m.ts)}),
     m.demo?h('span',{class:'tag',text:ui.example}):null);
   const parts=[h('div',{class:'pad'},meta,h('p',{class:'orig',dir:'auto',text:m.text}))];
 
   if(st.kind==='done'){
     parts.push(h('div',{class:'layer'+(reveal?' reveal':'')},
-      h('span',{class:'tag',text:m.lang+' → '+S.lang}),
+      h('span',{class:'tag',text:fl(m.lang)+' → '+fl(S.lang)}),
       h('p',{class:'txt',dir:'auto'},reveal?wordNodes(st.text):st.text)));
   }else if(st.kind==='pending'){
     parts.push(h('div',{class:'layer pending'},
-      h('span',{class:'tag',text:m.lang+' → '+S.lang}),
+      h('span',{class:'tag',text:fl(m.lang)+' → '+fl(S.lang)}),
       h('p',{class:'txt'},
         h('span',{class:'dots','aria-hidden':'true'},h('i',{style:'--k:0'}),h('i',{style:'--k:1'}),h('i',{style:'--k:2'})),
         ui.translating)));
   }else if(st.kind==='missing'){
     parts.push(h('div',{class:'layer'},
-      h('span',{class:'tag',text:m.lang+' → '+S.lang}),
+      h('span',{class:'tag',text:fl(m.lang)+' → '+fl(S.lang)}),
       h('button',{type:'button',class:'link',text:ui.translate,onclick:()=>translateLocal([m.id])})));
   }
 
   if(mine||canDel){
     const left=mine
-      ?h('span',{class:'tag'+(!outP&&delivered.length?' ok':''),text:outP?ui.translating:(delivered.length?'→ '+delivered.join(' · '):'')})
+      ?h('span',{class:'tag'+(!outP&&delivered.length?' ok':''),text:outP?ui.translating:(delivered.length?'→ '+delivered.map(fl).join(' · '):'')})
       :h('span');
     const del=canDel?h('button',{type:'button',class:'link del'+(armed?' armed':''),text:armed?ui.confirmDel:ui.del,onclick:()=>onDelete(m.id)}):null;
     parts.push(h('div',{class:'foot'},left,del));
@@ -845,15 +863,15 @@ function renderMisc(){
   if(!el.bulk.hidden) el.bulkText.textContent=ui.translateN(miss.length);
 
   const others=Array.from(new Set(S.members.filter(m=>m.id!==S.uid&&LMAP[m.lang]&&m.lang!==S.lang).map(m=>m.lang)));
-  let hint=ui.writeIn(LMAP[S.lang].n);
-  if(others.length) hint+=ui.forLangs(others.join(', '));
+  let hint=ui.writeIn(LMAP[S.lang].f+' '+LMAP[S.lang].n);
+  if(others.length) hint+=ui.forLangs(others.map(fl).join(', '));
   else if(S.mode==='live'&&S.members.filter(m=>m.id!==S.uid).length===0) hint+=ui.invite;
   el.hint.textContent=hint;
 
   el.msg.disabled=!S.canWrite;
   el.send.disabled=!S.canWrite;
   el.profileBtn.hidden=!(S.hasProfile&&S.view==='chat');
-  el.profileBtn.textContent=ui.profile+' · '+S.lang.toUpperCase();
+  el.profileBtn.textContent=ui.profile+' · '+fl(S.lang);
 }
 
 function render(){
